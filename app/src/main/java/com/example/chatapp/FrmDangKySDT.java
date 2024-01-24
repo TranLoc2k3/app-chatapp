@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FrmDangKySDT extends AppCompatActivity {
 
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://chatapp-3438b-default-rtdb.firebaseio.com/");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://chatapp-3438b-default-rtdb.firebaseio.com/");
     private ImageButton imgbtnLuiLai;
     private Button btnTiepTuc;
     private EditText editTxtSdt;
@@ -34,64 +34,54 @@ public class FrmDangKySDT extends AppCompatActivity {
         imgbtnLuiLai = findViewById(R.id.imgbtnLuilai);
         editTxtSdt = findViewById(R.id.editTxtSdt);
 
+
         imgbtnLuiLai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToDangKyHoTen();
+                Intent intent = new Intent(FrmDangKySDT.this, FrmDangKyHoTen.class);
+                startActivity(intent);
             }
         });
 
         btnTiepTuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleTiepTucButtonClick();
-            }
-        });
-    }
-
-    private void navigateToDangKyHoTen() {
-        Intent intent = new Intent(FrmDangKySDT.this, FrmDangKyHoTen.class);
-        startActivity(intent);
-    }
-
-    private void handleTiepTucButtonClick() {
-        final String sdt = editTxtSdt.getText().toString().trim();
-
-        if (sdt.isEmpty()) {
-            Toast.makeText(FrmDangKySDT.this, "Vui lòng nhập số điện thoại", Toast.LENGTH_SHORT).show();
-        } else {
-            checkPhoneNumberExistence(sdt);
-        }
-    }
-
-    private void checkPhoneNumberExistence(final String sdt) {
-        databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(sdt).exists()) {
-                    Toast.makeText(FrmDangKySDT.this, "Số điện thoại đã được đăng ký", Toast.LENGTH_SHORT).show();
+                String sdt = editTxtSdt.getText().toString();
+                if (sdt.isEmpty()) {
+                    Toast.makeText(FrmDangKySDT.this, "Vui lòng nhập số điện thoại", Toast.LENGTH_SHORT).show();
                 } else {
-                    savePhoneNumberToSharedPreferences(sdt);
-                    navigateToDangKyKichHoatTaiKhoan();
+                    databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.hasChild(sdt)) {
+                                Toast.makeText(FrmDangKySDT.this, "Số điện thoại đã tồn tại", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Save "sdt" to SharedPreferences
+                                SharedPreferences sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("sdt", sdt);
+                                editor.apply();
+
+                                // Retrieve "hoten" from SharedPreferences
+                                String hoten = sharedPreferences.getString("hoten", "");
+
+                                // Chuyển sang FrmDangKyKichHoatTaiKhoan và truyền dữ liệu
+                                Intent intent = new Intent(FrmDangKySDT.this, FrmDangKyKichHoatTaiKhoan.class);
+                                intent.putExtra("sdt", sdt); // Attach "sdt" as an extra
+                                intent.putExtra("hoten", hoten); // Attach "hoten" as an extra
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle onCancelled if needed
+                        }
+                    });
                 }
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle database error
-            }
         });
-    }
 
-    private void savePhoneNumberToSharedPreferences(String sdt) {
-        SharedPreferences sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("sdt", sdt);
-        editor.apply();
-    }
-
-    private void navigateToDangKyKichHoatTaiKhoan() {
-        Intent intent = new Intent(FrmDangKySDT.this, FrmDangKyKichHoatTaiKhoan.class);
-        startActivity(intent);
     }
 }

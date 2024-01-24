@@ -1,6 +1,7 @@
 package com.example.chatapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,24 +53,19 @@ public class FrmDangKyHoTen extends AppCompatActivity {
                     Toast.makeText(FrmDangKyHoTen.this, "Vui lòng nhập họ tên", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    // Đẩy dữ liệu sang FrmDangKySDT
+                    String sdt = txtHoTen.getText().toString();
 
-                        }
+                    // Lưu "hoten" vào SharedPreferences
+                    SharedPreferences sharedPreferences = getSharedPreferences("dataLogin", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("hoten", hoten);
+                    editor.apply();
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    // Đẩy dữ liệu lên Firebase
-                    databaseReference.child("User").child("Hoten").setValue(hoten);
-                    // Hợp lệ thì chuyển sang màn hình tiếp theo
-
+                    // Chuyển sang FrmDangKySDT và truyền dữ liệu
                     Intent intent = new Intent(FrmDangKyHoTen.this, FrmDangKySDT.class);
+                    intent.putExtra("hoten", hoten); // Attach "hoten" as an extra
                     startActivity(intent);
-
             }
             }
         });

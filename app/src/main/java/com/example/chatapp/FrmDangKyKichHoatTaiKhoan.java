@@ -12,7 +12,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class FrmDangKyKichHoatTaiKhoan extends AppCompatActivity {
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://chatapp-3438b-default-rtdb.firebaseio.com/");
     ImageButton imgbtnLuiLai;
     private TextView twGuiLaiMa;
     TextView txtMaXacNhan;
@@ -43,15 +48,27 @@ public class FrmDangKyKichHoatTaiKhoan extends AppCompatActivity {
                 String OTP = sharedPreferences.getString("OTP", "");
 
                 if (maXacNhan.equals(OTP)) {
-                    Intent intent = new Intent(FrmDangKyKichHoatTaiKhoan.this, FrmChat.class);
+                    // The confirmation code is correct
+
+                    // Retrieve user data from SharedPreferences
+                    String sdt = sharedPreferences.getString("sdt", "");
+                    String hoten = sharedPreferences.getString("hoten", "");
+
+                    // Save user data to Firebase
+                    DatabaseReference userReference = databaseReference.child("User").child(sdt);
+                    userReference.child("hoten").setValue(hoten);
+                    userReference.child("sdt").setValue(sdt);
+
+                    // Navigate to the next activity (MainActivity in this case)
+                    Intent intent = new Intent(FrmDangKyKichHoatTaiKhoan.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                }
-                else {
+                } else {
                     Toast.makeText(FrmDangKyKichHoatTaiKhoan.this, "Mã xác nhận không đúng", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
 
 
         twGuiLaiMa = findViewById(R.id.textViewGuiLaiMa);
