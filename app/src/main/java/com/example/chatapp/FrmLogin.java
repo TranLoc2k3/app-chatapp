@@ -66,22 +66,20 @@ public class FrmLogin extends AppCompatActivity {
         btnDangNhap1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                final String sdt = txtSdt.getText().toString();
-//                final String pass = txtPass.getText().toString();
-//
-//                if (sdt.isEmpty() || pass.isEmpty()) {
-//                    Toast.makeText(FrmLogin.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-//                }else if (sdt.length() < 10 || sdt.length() > 11) {
-//                    Toast.makeText(FrmLogin.this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
-//
-//                }else {
-//
-//                    Toast.makeText(FrmLogin.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(FrmLogin.this, FrmManHinhChinh.class);
-//                    startActivity(intent);
-//}
-                Intent intent = new Intent(FrmLogin.this, FrmChat.class);
-                startActivity(intent);
+                final String sdt = txtSdt.getText().toString();
+                final String pass = txtPass.getText().toString();
+
+                if (sdt.isEmpty() || pass.isEmpty()) {
+                    Toast.makeText(FrmLogin.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                }else if (sdt.length() < 10 || sdt.length() > 11) {
+                    Toast.makeText(FrmLogin.this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    Toast.makeText(FrmLogin.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(FrmLogin.this, FrmManHinhChinh.class);
+                    startActivity(intent);
+}
             }
         });
     }
