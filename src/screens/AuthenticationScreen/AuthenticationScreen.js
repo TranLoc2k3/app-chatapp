@@ -23,7 +23,7 @@ export const AuthenticationScreen = ({ navigation }) => {
          <View>
             <Image
                style={styles.logo}
-               source={require('../../assets/images/zalo.png')}
+               source={require('../../assets/images/zalo4.png')}
             />
          </View>
          <Intro />

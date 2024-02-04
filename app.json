@@ -4,10 +4,10 @@
       "slug": "Zalo",
       "version": "1.0.0",
       "orientation": "portrait",
-      "icon": "src/assets/images/zalo_arc.png",
+      "icon": "src/assets/images/zalo2.png",
       "userInterfaceStyle": "light",
       "splash": {
-         "image": "src/assets/images/splash_image.png",
+         "image": "src/assets/images/zalo1.png",
          "resizeMode": "contain",
          "backgroundColor": "#ffffff"
       },
@@ -18,12 +18,12 @@
       },
       "android": {
          "adaptiveIcon": {
-            "foregroundImage": "src/assets/images/zalo_arc.png",
+            "foregroundImage": "src/assets/images/zalo2.png",
             "backgroundColor": "#ffffff"
          }
       },
       "web": {
-         "favicon": "src/assets/images/zalo_arc.png"
+         "favicon": "src/assets/images/zalo2.png"
       }
    }
 }
