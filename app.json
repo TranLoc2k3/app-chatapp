@@ -13,7 +13,7 @@
       },
       "assetBundlePatterns": ["**/*"],
       "ios": {
-         "bundleIdentifier": "iuh.fit.se",
+         "bundleIdentifier": "com.zalo",
          "supportsTablet": true
       },
       "android": {
