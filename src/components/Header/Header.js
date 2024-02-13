@@ -13,10 +13,10 @@ import styles from './styles';
 
 /**
  * Represents the header component of the app.
- * @param {object} navigation - The navigation object.
- * @param {object} props - Additional props for the header.
- * @param {string} type - The type of the header. Can be 'chat', 'message', 'contact', 'discovery', 'timeline', or 'personal'.
- * @returns {JSX.Element} The header component.
+ * @param {object} navigation 
+ * @param {object} props 
+ * @param {string} type 
+ * @returns {JSX.Element} 
  */
 export const Header = ({ navigation, props, type, title }) => {
    Platform.OS === 'ios' ? (height = 44) : (height = 56);

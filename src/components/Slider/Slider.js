@@ -1,8 +1,7 @@
 import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import { SafeAreaView } from 'react-native';
-import { FlatList } from 'react-native';
+import { Slider } from './Slider';
 
 export const Slider = ({ item }) => {
    const { title, description, image } = item;
