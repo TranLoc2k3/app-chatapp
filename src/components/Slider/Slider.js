@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './styles';
 import { Slider } from './Slider';
 
-export const Slider = ({ item }) => {
+export const MySlider = ({ item }) => {
    const { title, description, image } = item;
    return (
       <View style={styles.container}>

@@ -29,6 +29,11 @@ export const ChatScreen = ({ route }) => {
          time: '12:01',
          content: 'Rất vui được gặp bạn',
       },
+      {
+         user: 0,
+         time: '12:02',
+         content: 'Nhìn bạn tôi muốn ăn bạn ngay!!!!',
+      }
       // Thêm tin nhắn khác tại đây nếu cần
    ];
 
