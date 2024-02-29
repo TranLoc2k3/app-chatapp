@@ -3,31 +3,47 @@ import { Image, Pressable, Text, View } from 'react-native';
 import styles from './styles';
 
 export const ChatItem = ({ navigation, data }) => {
-   const { name, message, time, avatar } = data;
+   const { name, member, message, dateTimeSend } = data;
    const [numberMessageUnread, setNumberMessageUnread] = useState(
       data.numberMessageUnread || 0
    );
+   const image = 'https://www.w3schools.com/w3images/avatar6.png';
    return (
       <Pressable
          style={styles.container}
          onPress={() => navigation.navigate('ChatScreen', data)}
       >
-         <Image source={{ uri: avatar }} style={styles.image} />
+         <Image source={{ uri: image }} style={styles.image} />
          <View style={styles.contentContainer}>
             <View style={{ flex: 1, marginLeft: 10, rowGap: 4 }}>
                <Text style={styles.name}>{name}</Text>
-               <Text style={styles.message}>{message}</Text>
+               <Text
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={styles.message}
+               >
+                  {message}
+               </Text>
             </View>
             <View style={{ alignItems: 'center', rowGap: 4 }}>
-               <Text style={styles.time}>{time}</Text>
+               <Text style={styles.time}>
+                  {dateTimeSend.split(' ')[1].split(':', 2).join(':')}
+               </Text>
                {numberMessageUnread ? (
-                  <Text
-                     numberOfLines={1}
-                     ellipsizeMode="tail"
-                     style={styles.qtyNotification}
+                  <View
+                     style={{
+                        backgroundColor: 'red',
+                        borderRadius: 50,
+                        width: 20,
+                        height: 20,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                     }}
                   >
-                     {numberMessageUnread >= 5 ? '5+' : numberMessageUnread}
-                  </Text>
+                     <Text style={{ color: 'white', textAlign: 'center' }}>
+                        {numberMessageUnread}
+                     </Text>
+                  </View>
                ) : (
                   ''
                )}
