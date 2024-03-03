@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native';
 import React, { useState } from 'react';
 import styles from './styles';
-import { Intro } from '../../components/Intro';
+import Intro from '../../components/Intro';
 import { Button } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 

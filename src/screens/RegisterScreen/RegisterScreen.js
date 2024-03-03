@@ -2,7 +2,7 @@ import { View, Text, Linking } from 'react-native';
 import React from 'react';
 import styles from './styles';
 import { IconButton, TextInput } from 'react-native-paper';
-import { URL } from '../../components/URL/URL';
+import { URL } from '../../components/URL';
 
 export const RegisterScreen = () => {
    return (

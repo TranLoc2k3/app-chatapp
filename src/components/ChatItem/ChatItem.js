@@ -26,9 +26,11 @@ export const ChatItem = ({ navigation, data }) => {
                </Text>
             </View>
             <View style={{ alignItems: 'center', rowGap: 4 }}>
-               <Text style={styles.time}>
-                  {dateTimeSend.split(' ')[1].split(':', 2).join(':')}
-               </Text>
+               {dateTimeSend && dateTimeSend.split ? (
+                  <Text style={styles.time}>
+                     {dateTimeSend.split(' ')[1].split(':', 2).join(':')}
+                  </Text>
+               ) : null}
                {numberMessageUnread ? (
                   <View
                      style={{
@@ -44,9 +46,7 @@ export const ChatItem = ({ navigation, data }) => {
                         {numberMessageUnread}
                      </Text>
                   </View>
-               ) : (
-                  ''
-               )}
+               ) : null}
             </View>
          </View>
       </Pressable>

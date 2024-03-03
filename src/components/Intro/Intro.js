@@ -65,5 +65,6 @@ export const Intro = () => {
             ))}
          </View>
       </SafeAreaView>
+
    );
 };
