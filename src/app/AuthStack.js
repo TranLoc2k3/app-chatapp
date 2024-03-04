@@ -1,27 +1,63 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AuthenticationScreen } from '../screens/AuthenticationScreen/AuthenticationScreen';
+import { InterfaceScreen } from '../screens/InterfaceScreen/InterfaceScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import AuthenticationScreen from '../screens/AuthenticationScreen';
 
 const Stack = createNativeStackNavigator();
 
 const AuthStack = () => {
    return (
-      <Stack.Navigator initialRouteName="Authentication">
+      <Stack.Navigator initialRouteName="Interface">
          <Stack.Screen
-            name="Authentication"
-            component={AuthenticationScreen}
+            name="Interface"
+            component={InterfaceScreen}
             options={{ headerShown: false }}
          />
 
-         <Stack.Screen name="Login" component={LoginScreen} />
+         <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{
+               headerTitle: 'Đăng nhập',
+               headerBackground: () => (
+                  <View
+                     style={{
+                        backgroundColor: '#4A8CFE',
+                        flex: 1,
+                        borderBottomWidth: 1,
+                        borderBottomColor: '#ddd',
+                     }}
+                  />
+               ),
+               headerTintColor: '#fff',
+            }}
+         />
          <Stack.Screen
             name="Register"
             component={RegisterScreen}
             options={{
-               headerTitle: 'Tạo tài khoản',
+               headerTitle: 'Đăng ký',
+               headerBackground: () => (
+                  <View
+                     style={{
+                        backgroundColor: '#4A8CFE',
+                        flex: 1,
+                        borderBottomWidth: 1,
+                        borderBottomColor: '#ddd',
+                     }}
+                  />
+               ),
+               headerTintColor: '#fff',
+            }}
+         />
+         <Stack.Screen
+            name="AuthenticationScreen"
+            component={AuthenticationScreen}
+            options={{
+               headerTitle: 'Nhập mã xác nhận',
                headerBackground: () => (
                   <View
                      style={{

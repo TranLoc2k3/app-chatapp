@@ -2,19 +2,22 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
    container: {
-      flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      rowGap: 30,
+      flex: 1,
+      paddingHorizontal: 12,
+      paddingVertical: 16,
    },
-   logo: {
-      width: 96,
-      height: 32,
+   input: {
+      marginBottom: 16,
    },
-   languageContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      width: 250,
+   inputOutline: {
+      borderRadius: 0,
+      borderWidth: 0,
+      borderBottomWidth: 1,
+      borderBottomColor: '#727174',
+   },
+   inputContent: {
+      paddingLeft: 0,
    },
    buttonLang: {
       borderRadius: 0,
@@ -26,6 +29,23 @@ const styles = StyleSheet.create({
       borderBottomWidth: 1,
       borderBottomColor: '#000',
       color: '#000',
+   },
+   verificationCodeContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+   },
+
+   verificationCodeInput: {
+      width: 40,
+      height: 40,
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 5,
+      textAlign: 'center',
+   },
+   verificationCodeInputActive: {
+      borderColor: '#000',
    },
 });
 

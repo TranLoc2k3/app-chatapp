@@ -1,77 +1,89 @@
-import { View, Text, Image } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
+import { IconButton, TextInput, Button } from 'react-native-paper';
+import { URL } from '../../components/URL';
 import styles from './styles';
-import Intro from '../../components/Intro';
-import { Button } from 'react-native-paper';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const AuthenticationScreen = ({ navigation }) => {
-   const insets = useSafeAreaInsets();
-   const [isEnglish, setIsEnglish] = useState(true);
+export const AuthenticationScreen = () => {
+   const navigation = useNavigation();
+   const [remainingTime, setRemainingTime] = useState(60);
+
+   useEffect(() => {
+      const interval = setInterval(() => {
+         setRemainingTime((prev) => prev - 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+   }, []);
+
+   const resendCode = () => {
+      setRemainingTime(60);
+   };
+
+   const toggleShowPassword = () => {
+      setShowPassword(!showPassword);
+   };
+
    return (
-      <View
-         style={[
-            styles.container,
-            {
-               paddingTop: insets.top,
-               paddingBottom: insets.bottom,
-               paddingHorizontal: insets.left,
-               paddingVertical: insets.right,
-            },
-         ]}
-      >
-         <View>
-            <Image
-               style={styles.logo}
-               source={require('../../assets/images/zalo4.png')}
-            />
+      <View style={styles.container}>
+         <Text style={{ fontWeight: '600' }}>
+            Vui lòng không chia sẻ mã xác nhận của bạn với bất kỳ ai
+         </Text>
+
+         <Icon
+            name="phone"
+            size={30}
+            color="#4A8CFE"
+            style={{ alignSelf: 'center', paddingTop: 30 }}
+         />
+
+         <Text style={{ fontWeight: '600', textAlign: 'center', padding: 20 }}>
+            Mã xác nhận đang được gửi đến số điện thoại của bạn
+         </Text>
+
+         <TextInput
+            // mã xác nhận chỉ được nhập 6 số vào 6 ô input
+            mode="outlined"
+            placeholder="Mã xác nhận"
+            style={styles.input}
+            outlineStyle={styles.inputOutline}
+            contentStyle={styles.inputContent}
+            keyboardType="phone-pad"
+            maxLength={1}
+         />
+
+         <View
+            style={{
+               flexDirection: 'row',
+               justifyContent: 'center',
+               alignItems: 'center',
+               marginBottom: 10,
+               padding: 20,
+            }}
+         >
+            <Text style={{ marginRight: 5 }}>
+               Gửi lại mã xác nhận sau {remainingTime} giây
+            </Text>
+            <Text onPress={resendCode}>Gửi lại mã xác nhận</Text>
          </View>
-         <Intro />
-         <View style={{ rowGap: 8 }}>
-            <Button
-               mode="contained"
-               style={[styles.button, { backgroundColor: '#4A8CFE' }]}
-               contentStyle={styles.button}
-               onPress={() => navigation.navigate('Login')}
-            >
-               Đăng nhập
-            </Button>
-            <Button
-               mode="contained"
-               style={[styles.button, { backgroundColor: '#414347' }]}
-               contentStyle={styles.button}
-               onPress={() => navigation.navigate('Register')}
-            >
-               Đăng ký
-            </Button>
-         </View>
-         <View style={styles.languageContainer}>
-            <Button
-               mode="text"
-               labelStyle={[
-                  styles.buttonText,
-                  !isEnglish ? styles.buttonActive : '',
-               ]}
-               style={[
-                  styles.buttonLang,
-                  !isEnglish ? styles.buttonActive : '',
-               ]}
-               onPress={() => setIsEnglish(false)}
-            >
-               Tiếng Việt
-            </Button>
-            <Button
-               mode="text"
-               labelStyle={[
-                  styles.buttonText,
-                  isEnglish ? styles.buttonActive : '',
-               ]}
-               style={[styles.buttonLang, isEnglish ? styles.buttonActive : '']}
-               onPress={() => setIsEnglish(true)}
-            >
-               English
-            </Button>
-         </View>
+
+         <Button
+            mode="contained"
+            style={[
+               styles.button,
+               {
+                  backgroundColor: '#4A8CFE',
+                  width: '50%',
+                  alignSelf: 'center',
+               },
+            ]}
+            contentStyle={styles.button}
+            onPress={() => navigation.navigate('AuthStack')}
+         >
+            Tiếp tục
+         </Button>
       </View>
    );
 };

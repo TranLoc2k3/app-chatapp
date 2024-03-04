@@ -8,7 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-   const [isLogin, setIsLogin] = useState(false); // Đổi giá trị này thành true
+   const [isLogin, setIsLogin] = useState(false); 
    return (
       <SafeAreaProvider>
          <NavigationContainer>

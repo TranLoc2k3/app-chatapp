@@ -19,7 +19,6 @@ const AppStack = ({ navigation }) => {
             options={{ headerShown: false }}
          />
 
-         
          <Stack.Screen
             name="ChatScreen"
             component={ChatScreen}
