@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
    },
    input: {
       marginBottom: 16,
-      
-      
+      borderWidth: 1,
+      borderRadius: 8
    },
    inputOutline: {
       borderRadius: 0,
@@ -31,6 +31,15 @@ const styles = StyleSheet.create({
       borderBottomWidth: 1,
       borderBottomColor: '#000',
       color: '#000',
+   },
+   avatar: {
+      width: 100,
+      height: 100,
+      borderRadius: 50,
+      backgroundColor: '#000',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginBottom: 20,
    },
 });
 

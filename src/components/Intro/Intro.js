@@ -9,20 +9,31 @@ export const Intro = () => {
    const slide = [
       {
          id: 1,
-         title: 'Chào mừng bạn đến với Zalo',
-         description: 'Đăng nhập để bắt đầu',
+         title: 'Gọi video ổn định',
+         description: 'Trò chuyện thật đã với bạn bè',
          image: require('../../assets/images/tintin.jpg'),
       },
       {
          id: 2,
-         title: 'Tìm bạn bè',
-         description: 'Tìm bạn bè trên Zalo',
+         title: 'Chat nhóm tiện lợi',
+         description: 'Cùng trao đổi thông tin với nhiều người',
          image: require('../../assets/images/tintin.jpg'),
       },
       {
          id: 3,
-         title: 'Chat',
-         description: 'Chat với bạn bè',
+         title: 'Gửi ảnh nhanh chóng',
+         description: 'Chia sẻ hình ảnh chất lượng cao',
+         image: require('../../assets/images/tintin.jpg'),
+      },
+      {
+         id: 4,
+         title: 'Nhật ký bạn bè',
+         description: 'Nơi cập nhật hoat động của bạn bè',
+         image: require('../../assets/images/tintin.jpg'),
+      },
+      {
+         id: 5,
+         title: 'TinTin ứng dụng chat mới',
          image: require('../../assets/images/tintin.jpg'),
       },
    ];

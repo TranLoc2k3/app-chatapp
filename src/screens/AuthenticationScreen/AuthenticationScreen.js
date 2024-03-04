@@ -26,6 +26,10 @@ export const AuthenticationScreen = () => {
       setShowPassword(!showPassword);
    };
 
+   const buttonTiepTuc = () => {
+      navigation.navigate('PasswordScreen');
+   };
+
    return (
       <View style={styles.container}>
          <Text style={{ fontWeight: '600' }}>
@@ -51,7 +55,7 @@ export const AuthenticationScreen = () => {
             outlineStyle={styles.inputOutline}
             contentStyle={styles.inputContent}
             keyboardType="phone-pad"
-            maxLength={1}
+            maxLength={6}
          />
 
          <View
@@ -80,8 +84,8 @@ export const AuthenticationScreen = () => {
                },
             ]}
             contentStyle={styles.button}
-            onPress={() => navigation.navigate('AuthStack')}
-         >
+            onPress={buttonTiepTuc}        
+             >
             Tiếp tục
          </Button>
       </View>

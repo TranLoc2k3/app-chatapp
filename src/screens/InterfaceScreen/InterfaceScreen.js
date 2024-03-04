@@ -8,6 +8,16 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export const InterfaceScreen = ({ navigation }) => {
    const insets = useSafeAreaInsets();
    const [isEnglish, setIsEnglish] = useState(true);
+
+   const englishTexts = {
+      login: 'Login',
+      register: 'Register',
+      vietnamese: 'Tiếng Việt',
+      english: 'English',
+   };
+
+   const buttonTexts = isEnglish ? englishTexts : {};
+
    return (
       <View
          style={[
@@ -28,7 +38,7 @@ export const InterfaceScreen = ({ navigation }) => {
                contentStyle={styles.button}
                onPress={() => navigation.navigate('Login')}
             >
-               Đăng nhập
+               {buttonTexts.login || 'Đăng nhập'}
             </Button>
             <Button
                mode="contained"
@@ -36,7 +46,7 @@ export const InterfaceScreen = ({ navigation }) => {
                contentStyle={styles.button}
                onPress={() => navigation.navigate('Register')}
             >
-               Đăng ký
+               {buttonTexts.register || 'Đăng ký'}
             </Button>
          </View>
          <View style={styles.languageContainer}>
@@ -52,7 +62,7 @@ export const InterfaceScreen = ({ navigation }) => {
                ]}
                onPress={() => setIsEnglish(false)}
             >
-               Tiếng Việt
+               {buttonTexts.vietnamese || 'Tiếng Việt'}
             </Button>
             <Button
                mode="text"
@@ -63,7 +73,7 @@ export const InterfaceScreen = ({ navigation }) => {
                style={[styles.buttonLang, isEnglish ? styles.buttonActive : '']}
                onPress={() => setIsEnglish(true)}
             >
-               English
+               {buttonTexts.english || 'English'}
             </Button>
          </View>
       </View>

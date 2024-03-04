@@ -5,6 +5,8 @@ import { InterfaceScreen } from '../screens/InterfaceScreen/InterfaceScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import AuthenticationScreen from '../screens/AuthenticationScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import PasswordScreen from '../screens/PasswordScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -71,6 +73,43 @@ const AuthStack = () => {
                headerTintColor: '#fff',
             }}
          />
+         <Stack.Screen
+            name="ProfileScreen"
+            component={ProfileScreen}
+            options={{
+               headerTitle: 'Thông tin cá nhân',
+               headerBackground: () => (
+                  <View
+                     style={{
+                        backgroundColor: '#4A8CFE',
+                        flex: 1,
+                        borderBottomWidth: 1,
+                        borderBottomColor: '#ddd',
+                     }}
+                  />
+               ),
+               headerTintColor: '#fff',
+            }}
+         />
+         <Stack.Screen
+            name="PasswordScreen"
+            component={PasswordScreen}
+            options={{
+               headerTitle: 'Mật khẩu đăng nhập',
+               headerBackground: () => (
+                  <View
+                     style={{
+                        backgroundColor: '#4A8CFE',
+                        flex: 1,
+                        borderBottomWidth: 1,
+                        borderBottomColor: '#ddd',
+                     }}
+                  />
+               ),
+               headerTintColor: '#fff',
+            }}
+         />
+
       </Stack.Navigator>
    );
 };
