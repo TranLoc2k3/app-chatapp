@@ -28,7 +28,7 @@ export const PasswordScreen = () => {
    return (
       <View style={styles.container}>
          <Text style={{ fontWeight: '600' }}>
-            Vui lòng nhập mật khẩu để đăng nhập vào tài khoản của bạn 
+            Vui lòng nhập mật khẩu để đăng nhập vào tài khoản của bạn
          </Text>
 
          <TextInput

@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
+import { ComboBox } from 'react-native-paper';
 
 export const ProfileScreen = () => {
    const navigation = useNavigation();
@@ -17,18 +18,16 @@ export const ProfileScreen = () => {
 
    return (
       <View style={styles.container}>
-
-      <Text style={{ fontWeight: '600', textAlign: 'center', marginBottom: 20 }}>
+         <Text
+            style={{ fontWeight: '600', textAlign: 'center', marginBottom: 20 }}
+         >
             Hãy cập nhật thông tin cá nhân của bạn
          </Text>
 
          {/* Avatar */}
          <View style={styles.avatar}>
-            <Text style={{ fontWeight: '600', color: '#fff'}}>Avatar</Text>
-
+            <Text style={{ fontWeight: '600', color: '#fff' }}>Avatar</Text>
          </View>
-
-
 
          {/* Input Tên */}
          <TextInput
@@ -42,14 +41,23 @@ export const ProfileScreen = () => {
          />
 
          {/* Input Giới tính */}
-         <TextInput
-            mode="outlined"
-            placeholder="Giới tính"
+         <ComboBox
             style={styles.input}
-            outlineColor="#000"
-            selectionColor="#000"
-            value={gender}
-            onChangeText={setGender}
+            label="Giới tính"
+            data={[
+               { label: 'Nam', value: 'Nam' },
+               { label: 'Nữ', value: 'Nữ' },
+               { label: 'Khác', value: 'khác' },
+            ]}
+
+            // <TextInput
+            //    mode="outlined"
+            //    placeholder="Giới tính"
+            //    style={styles.input}
+            //    outlineColor="#000"
+            //    selectionColor="#000"
+            //    value={gender}
+            //    onChangeText={setGender}
          />
 
          {/* Input Sinh nhật */}

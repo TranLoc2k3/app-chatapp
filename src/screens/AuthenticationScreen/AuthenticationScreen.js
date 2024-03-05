@@ -47,11 +47,9 @@ export const AuthenticationScreen = () => {
             Mã xác nhận đang được gửi đến số điện thoại của bạn
          </Text>
 
-         <TextInput
-            // mã xác nhận chỉ được nhập 6 số vào 6 ô input
+         <TextInput style={styles.input}
             mode="outlined"
             placeholder="Mã xác nhận"
-            style={styles.input}
             outlineStyle={styles.inputOutline}
             contentStyle={styles.inputContent}
             keyboardType="phone-pad"

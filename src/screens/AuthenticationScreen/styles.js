@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
    },
    input: {
       marginBottom: 16,
+      alignContent: 'center',
+      alighItems: 'center',
+      textAlign: 'center',
    },
    inputOutline: {
       borderRadius: 0,
