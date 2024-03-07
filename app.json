@@ -1,29 +1,38 @@
 {
    "expo": {
-      "name": "Zalo",
-      "slug": "Zalo",
-      "version": "1.0.0",
-      "orientation": "portrait",
-      "icon": "src/assets/images/zalo2.png",
-      "userInterfaceStyle": "light",
-      "splash": {
-         "image": "src/assets/images/zalo1.png",
-         "resizeMode": "contain",
+     "name": "Tintin",
+     "slug": "Zalo", 
+     "plugins": ["@react-native-firebase/app", "@react-native-firebase/auth"],
+     "version": "1.0.0",
+     "orientation": "portrait",
+     "icon": "src/assets/images/zalo2.png",
+     "userInterfaceStyle": "light",
+     "splash": {
+       "image": "src/assets/images/zalo1.png",
+       "resizeMode": "contain",
+       "backgroundColor": "#ffffff"
+     },
+     "assetBundlePatterns": [
+       "**/*"
+     ],
+     "ios": {
+       "bundleIdentifier": "com.tintin",
+       "supportsTablet": true
+     },
+     "android": {
+       "adaptiveIcon": {
+         "foregroundImage": "src/assets/images/zalo2.png",
          "backgroundColor": "#ffffff"
-      },
-      "assetBundlePatterns": ["**/*"],
-      "ios": {
-         "bundleIdentifier": "com.zalo",
-         "supportsTablet": true
-      },
-      "android": {
-         "adaptiveIcon": {
-            "foregroundImage": "src/assets/images/zalo2.png",
-            "backgroundColor": "#ffffff"
-         }
-      },
-      "web": {
-         "favicon": "src/assets/images/zalo2.png"
-      }
+       },
+       "package": "com.tintin"
+     },
+     "web": {
+       "favicon": "src/assets/images/zalo2.png"
+     },
+     "extra": {
+       "eas": {
+         "projectId": "29b7a7c0-1402-47e3-b021-a2380a2480c2"
+       }
+     }
    }
-}
+ }

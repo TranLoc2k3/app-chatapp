@@ -5,10 +5,12 @@ import { URL } from '../../components/URL';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth';
 
 export const AuthenticationScreen = () => {
    const navigation = useNavigation();
    const [remainingTime, setRemainingTime] = useState(60);
+   const [confirm, setConfirm] = React.useState(null);
 
    useEffect(() => {
       const interval = setInterval(() => {
@@ -26,8 +28,24 @@ export const AuthenticationScreen = () => {
       setShowPassword(!showPassword);
    };
 
+   // Handle confirm code button press
+   async function confirmCode() {
+      try {
+         await auth().confirm('012345').then((user) => {
+            alert('OTP dung. User:  ${user.uid}');
+         });
+      } catch (error) {
+         console.log('error: ', error);
+         console.log('Invalid code.');
+         alert('Verification code is invalid: ${error}');
+      }
+   }
+
    const buttonTiepTuc = () => {
-      navigation.navigate('PasswordScreen');
+      //verify code with firebase phone auth
+      confirmCode();
+
+      //navigation.navigate('PasswordScreen');
    };
 
    return (
@@ -47,7 +65,8 @@ export const AuthenticationScreen = () => {
             Mã xác nhận đang được gửi đến số điện thoại của bạn
          </Text>
 
-         <TextInput style={styles.input}
+         <TextInput
+            style={styles.input}
             mode="outlined"
             placeholder="Mã xác nhận"
             outlineStyle={styles.inputOutline}
@@ -82,8 +101,8 @@ export const AuthenticationScreen = () => {
                },
             ]}
             contentStyle={styles.button}
-            onPress={buttonTiepTuc}        
-             >
+            onPress={buttonTiepTuc}
+         >
             Tiếp tục
          </Button>
       </View>
